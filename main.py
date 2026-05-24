@@ -77,3 +77,9 @@ def update_expense(expense_id: int, updated: ExpenseCreate, db: Session = Depend
 def get_by_category(category: str, db: Session = Depends(get_db)):
     return db.query(models.Expense).filter(models.Expense.category == category).all()
 
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
